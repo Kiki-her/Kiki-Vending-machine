@@ -37,7 +37,7 @@ const dogImg = fetch(`https://dog.ceo/api/breeds/image/random`)
                         title.appendChild(imgTag);
                     });
 
-/*
+
 const receiptline = require('receiptline');
 
 const message = 'Hey';
@@ -79,4 +79,4 @@ const svg = receiptline.transform(text, {cpl: 32, encoding: 'cp932', spacing: 't
 const svgDiv = document.createElement('div');
 svgDiv.innerHTML = svg;
 title.appendChild(svgDiv);
-*/
+
