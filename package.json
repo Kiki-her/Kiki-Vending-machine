@@ -1,0 +1,27 @@
+{
+  "name": "vending-machine",
+  "version": "1.0.0",
+  "description": "Vending machine v2",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run lint && mocha",
+    "lint": "eslint --fix --ext .js ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kiki-her/Vending-machine.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kiki-her/Vending-machine/issues"
+  },
+  "homepage": "https://github.com/Kiki-her/Vending-machine#readme",
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "eslint": "^8.26.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "mocha": "^10.1.0"
+  }
+}
