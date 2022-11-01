@@ -1,4 +1,4 @@
-const VendingMachine = require("../VendingMachine");
+const VendingMachine = require("../src/VendingMachine");
 const { expect } = require("chai");
 
 describe("vending machine", () => {
