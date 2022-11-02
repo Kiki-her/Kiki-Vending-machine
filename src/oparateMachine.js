@@ -1,9 +1,9 @@
-// const VendingMachine = require("../src/VendingMachine"); 
+// const VendingMachine = require("../src/VendingMachine");
 const title = document.querySelector("#titleH1");
 const imgTag = document.createElement("img");
 // accordionText.innerHTMLにsvgを仕込む
 // DOGもあったら、innerHTMLを`${svg}<img src="~"></img>`にする？
-const accordionText = document.querySelector("accordion__text");
+const accordionText = document.querySelector(".accordion__text");
 // buttonにonClickつけたい
 // trivia button
 const button1 = document.querySelector(".button--1");
@@ -13,123 +13,299 @@ const button2 = document.querySelector(".button--2");
 const button3 = document.querySelector(".button--3");
 // dog button
 const button4 = document.querySelector(".button--4");
-const sumObj = {
-    trivia: 0,
-    answer: 0,
-    hello: 0,
-    dog: 0
-}
 
-console.log(button1)
-button1.addEventListener("click", () => {
-    console.log("HEY------");
-    getRandomTrivia();
-    sumObj["trivia"]++;
+const coin10 = document.querySelector(".coin10");
+const coin50 = document.querySelector(".coin50");
+const coin100 = document.querySelector(".coin100");
+const coin500 = document.querySelector(".coin500");
+const titleH1 = document.querySelector("h1");
+let coinAmount = 0;
+coin10.addEventListener("click", () => {
+    coinAmount += 10;
+    titleH1.innerText = coinAmount;
+});
+coin50.addEventListener("click", () => {
+    coinAmount += 50;
+    titleH1.innerText = coinAmount;
+});
+coin100.addEventListener("click", () => {
+    coinAmount += 100;
+    titleH1.innerText = coinAmount;
+});
+coin500.addEventListener("click", () => {
+    coinAmount += 500;
+    titleH1.innerText = coinAmount;
 })
+
+const resultButton = document.querySelector("#result-button");
+
+const sumObj = {
+  trivia: {
+    count: 0,
+    resultVal: []
+},
+  answer: {
+    count: 0,
+    resultVal: []
+},
+  hello: {
+    count: 0,
+    resultVal: []
+},
+  dog: {
+    count: 0,
+    resultVal: []
+},
+};
+
+console.log(button1);
+button1.addEventListener("click", () => {
+  getRandomTrivia();
+  sumObj["trivia"].count++;
+});
 
 button2.addEventListener("click", () => {
-    getAnswer();
-    sumObj["answer"]++;
-})
+  getAnswer();
+  sumObj["answer"].count++;
+});
 
 button3.addEventListener("click", () => {
-    getRandomHello();
-    sumObj["hello"]++;
-})
+  getRandomHello();
+  sumObj["hello"].count++;
+});
 
 button4.addEventListener("click", () => {
-    getRandomDog();
-    sumObj["dog"]++;
+  getRandomDog();
+  sumObj["dog"].count++;
+});
+
+function setReceiptDetail() {
+  let detialText = "";
+  // key: nameSum, value: 文字
+  let valueText = ""
+  const detialObj = {
+    triviaSum: "",
+    answerSum: "",
+    helloSum: "",
+    dogSum: ""
+  };
+  let sum = 0;
+  let totalAmount = 0;
+  for (let key in sumObj) {
+    if (sumObj[key].count !== 0 && key === "trivia") {
+        detialObj["triviaSum"] = `106 | trivia | ${sumObj[key].count}個 | ${sumObj[key].count * 150}*`;
+        for(let val of sumObj[key].resultVal) {
+            valueText += "\n" + val;
+        }
+        sum += sumObj[key].count;
+        totalAmount += sumObj[key].count * 150;
+    } else if (sumObj[key].count !== 0 && key === "answer") {
+        detialObj["answerSum"] = `424 | answer | ${sumObj[key].count}個 | ${sumObj[key].count * 210}*`;
+        for(let val of sumObj[key].resultVal) {
+            valueText += "\n" + val;
+        }
+        sum += sumObj[key].count;
+        totalAmount += sumObj[key].count * 210;
+    } else if (sumObj[key].count !== 0 && key === "hello") {
+        detialObj["helloSum"] = `860 | hello | ${sumObj[key].count}個 | ${sumObj[key].count * 50}*`;
+        for(let val of sumObj[key].resultVal) {
+            valueText += "\n" + val;
+        }
+        sum += sumObj[key].count;
+        totalAmount += sumObj[key].count * 50;
+    } else if (sumObj[key].count !== 0 && key === "dog") {
+        detialObj["dogSum"] = `109 | dogImg | ${sumObj[key].count}個 | ${sumObj[key].count * 500}*`;
+        // for(let val of sumObj[key].resultVal) {
+        //     valueText += "\n" + val;
+        // }
+        sum += sumObj[key].count;
+        totalAmount += sumObj[key].count * 500;
+    } 
+  }
+  for(let key in detialObj) {
+    if(detialObj[key] !== "" && detialText == "") {
+        detialText += detialObj[key];
+    } else if(detialObj[key] !== "") {
+        detialText += "\n" + detialObj[key];
+    }
+  }
+
+  return {detialText, valueText, sum, totalAmount, };
+}
+
+resultButton.addEventListener("click", () => {
+    const detialObj = setReceiptDetail();
+
+    createReceipt(detialObj, coinAmount)
+});
+
+const resetButton = document.querySelector("#reset-button");
+resetButton.addEventListener("click", () => {
+    titleH1.innerText = "Insert Coin";
 })
 
 
+const langCodes = [
+  "az",
+  "bg",
+  "bs",
+  "cs",
+  "da",
+  "de",
+  "dz",
+  "en",
+  "en-gb",
+  "en-us",
+  "es",
+  "et",
+  "fi",
+  "fil",
+  "fr",
+  "hr",
+  "hu",
+  "id",
+  "kk",
+  "lo",
+  "lt",
+  "lv",
+  "ms",
+  "my",
+  "no",
+  "ro",
+  "sk",
+  "sl",
+  "sq",
+  "sr",
+  "sv",
+  "sw",
+  "tk",
+];
 
 
-const langCodes = ["az", "bg", "bs", "cs", "da", "de", "dz", "en", "en-gb", "en-us", "es", "et", "fi", "fil", "fr", "hr", "hu","id", "kk", "lo", "lt", "lv", "ms", "my", "no", "ro", "sk", "sl", "sq", "sr", "sv", "sw", "tk"];
-/*
-getRandomHello();
-getAnswer();
-getRandomTrivia();
-getRandomDog();
-*/
-console.log(VendingMachine);
-const receiptline = require('receiptline');
+const receiptline = require("receiptline");
 
-const message = 'Hey';
+function createReceipt(obj, money) {
 
-const text = `Kiki Vending Machine
-ナマケモノ都
-登録番号　K1234555
+    const text = `Kiki Vending Machine
+    ナマケモノ都
+    登録番号　K1234555
+    
+    2022年11月1日 12:00
+    {border:line; width:22}
+    ^領 収 書
+    {border:space; width: 30}
+    -
+    {border:space; width:3,14,3,6}
+    ${obj.sumText}
+    {border:space; width: 30}
+    -
+    {border:space; width: 26}
+    ${obj.valText}
+    {border:space; width: 30}
+    -
+    {width:5,5,16; text:wrap}
+    小計 | ${obj.sum}点 | ¥${obj.totalAmount}
+    {border:space; width: 30}
+    -
+    {width:auto}
+    合計 | ^¥${obj.totalAmount}
+    お預かり | ^¥${money}
+    お釣り | ^¥${money - obj.totalAmount}
+    *印はナマケモノ免税対象商品です
+    
+    010001000100100101000111`;
 
-2022年11月1日 12:00
-{border:line; width:22}
-^領 収 書
-{border:space; width: 30}
--
-{border:space; width:3,14,3,6}
-198  | dog-lovers | 1個 | ¥200*
-398 | cat-party | 2個 | ¥500*
-{border:space; width: 30}
--
-{border:space; width: 26}
-your dog is good boy.
-your cat is master.
-cat is god.
-${message}
-{border:space; width: 30}
--
-{width:5,5,16; text:wrap}
-小計 | 3点 | ¥700
-{border:space; width: 30}
--
-{width:auto}
-合計 | ^¥700
-お預かり | ^¥1,000
-お釣り | ^¥300
-*印はかわいい免税対象商品です
+    const text1 = `Kiki Vending Machine
+    ナマケモノ都
+    登録番号　K1234555
+    
+    ^領 収 書
+    -
+    ${obj.sumText}
+    -
+    ${obj.valText}
+    -
+    小計 | ${obj.sum}点 | ¥${obj.totalAmount}
+    -
+    合計 | ^¥${obj.totalAmount}
+    お預かり | ^¥${money}
+    お釣り | ^¥${money - obj.totalAmount}
+    *印はナマケモノ免税対象商品です
+    
+    010001000100100101000111`;
 
-010001000100100101000111`;
+    // const svg = receiptline.transform(text, {
+    //   cpl: 24,
+    //   encoding: "cp932",
+    //   spacing: "false",
+    // });
 
-const svg = receiptline.transform(text, {cpl: 32, encoding: 'cp932', spacing: 'true'});
-const svgDiv = document.createElement('div');
-svgDiv.innerHTML = svg;
-title.appendChild(svgDiv);
+    const tagP = document.createElement("p");
+    tagP.style = 'margin-right: 1px; background: pink; height:90vh; overflow-x: scroll;';
+    tagP.innerHTML = text1;
+    const imgAmount = sumObj["dog"].resultVal.length;
+    console.log(imgAmount, "DOGLE");
+    for(let i = 0; i < imgAmount; i++) {
+        const img = document.createElement("img");
+        img.className = `dogImg${i}`;
+        img.src = sumObj["dog"].resultVal[i];
+        img.style = "width: 200px; height: auto;";
+        tagP.appendChild(img);
+        console.log("DOG")
+    }
+    accordionText.appendChild(tagP);
+    const returnMoney = money - obj.totalAmount;
+    titleH1.innerText = "Thank you! " + returnMoney;
+}
+
+
 
 // 言語コードをランダムで取得
 function getTargetLang() {
-    const i = Math.floor(Math.random() * (langCodes.length - 1));
-    return langCodes[i];
+  const i = Math.floor(Math.random() * (langCodes.length - 1));
+  return langCodes[i];
 }
 
 // 各国のHelloをランダムで取得
 async function getRandomHello() {
-    const getHello = await fetch(`https://stefanbohacek.com/hellosalut/?lang=${getTargetLang()}`)
-    .then((res) => res.json());
-    console.log("^^^", getHello.hello);
-    
+  const getHello = await fetch(
+    `https://stefanbohacek.com/hellosalut/?lang=${getTargetLang()}`
+  ).then((res) => res.json());
+    sumObj["hello"]["resultVal"].push(getHello.hello)
+//   console.log("^^^", getHello.hello);
 }
 
 // yesかnoかを取得(10000回に1回maybe)
 async function getAnswer() {
-    const yesOrNo = await fetch(`https://yesno.wtf/api`)
-    .then((res) => res.json());
-    console.log("---", yesOrNo.answer);
+  const yesOrNo = await fetch(`https://yesno.wtf/api`).then((res) =>
+    res.json()
+  );
+  sumObj["answer"]["resultVal"].push("---", + yesOrNo.answer)
+//   console.log("---", yesOrNo.answer);
 }
 
 // triviaをランダムで取得
 async function getRandomTrivia() {
-    const trivia = await fetch(`https://opentdb.com/api.php?amount=1`)
-    .then((res) => res.json());
-    console.log("Q: ", trivia.results[0].question, "--A: ", trivia.results[0].correct_answer);
+  const trivia = await fetch(`https://opentdb.com/api.php?amount=1`).then(
+    (res) => res.json()
+  );
+  sumObj["trivia"]["resultVal"].push("Q: " + trivia.results[0].question + "\n----A: " + trivia.results[0].correct_answer)
+//   console.log(
+//     "Q: ",
+//     trivia.results[0].question,
+//     "--A: ",
+//     trivia.results[0].correct_answer
+//   );
 }
 
 // 犬の画像をランダムで取得
 async function getRandomDog() {
-    const dogImg = await fetch(`https://dog.ceo/api/breeds/image/random`)
-    .then((res) => res.json());
-    console.log("ImgSrc: ", dogImg.message);
-    imgTag.src = dogImg.message;
-    imgTag.className = "dogImg";
-    title.appendChild(imgTag);
+  const dogImg = await fetch(`https://dog.ceo/api/breeds/image/random`).then(
+    (res) => res.json()
+  );
+  sumObj["dog"]["resultVal"].push(dogImg.message);
+//   console.log("ImgSrc: ", dogImg.message);
+//   imgTag.src = dogImg.message;
+//   imgTag.className = "dogImg";
+//   title.appendChild(imgTag);
 }
-

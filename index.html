@@ -8,13 +8,14 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <h1 id="titleH1">Vending Machine</h1>
+    <h1>Insert Coin</h1>
     <div class="neon_buttons">
         <a href="#" class="button button--1">TRIVIA ¥150</a>
         <a href="#" class="button button--2">ANSWER ¥210</a>  
         <a href="#" class="button button--3">HELLO? ¥50</a>
         <a href="#" class="button button--4">DOGimg ¥500</a>
-      </div>
+    </div>
+    <button id="result-button">GET RECEIPT</button>
     <div class="accordion accordion--typeC">
         <input type="radio" id="open-3" class="accordion--open" name="accordion-3">
         <input type="radio" id="close-3" class="accordion--close" name="accordion-3">
@@ -25,7 +26,7 @@
               <label for="close-3" class="accordion__close"></label>
             </dt>
             <dd class="accordion__patition">
-              <span class="accordion__text">HTMLとCSSだけでもこのようなアコーディオンが実装可能です。&lt;input&gt;タグと&lt;label&gt;タグを組み合わせて使うことで簡単に実装できます。</span>
+              <span class="accordion__text"></span>
               <div class="accordion__zipper">
                 <div class="pin">
                   <div class="pin__inner"></div>
@@ -58,8 +59,15 @@
             </dd>
           </dl>
         </label>
-      </div>
-    <script src="./src/VendingMachine.js"></script>
+    </div>
+    <div class="data">
+        <div class="coin large clickable coin10">10</div>
+        <div class="coin large clickable coin50">50</div>
+        <div class="coin large clickable coin100">100</div>
+        <div class="coin large clickable coin500">500</div>
+    </div>
+    <button id="reset-button">RESET</button>
+    <!-- <script src="./src/VendingMachine.js"></script> -->
     <!-- <script src="./bundle.js"></script> -->
     <script src="./src/oparateMachine.js"></script>
 </body>

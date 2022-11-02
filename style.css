@@ -1,6 +1,61 @@
 body {
-    background-color: aqua;
+    font-family: 'Press Start 2P', cursive;
+    background-color: #0f0a1e;
 }
+
+/* arcade text from codepen */
+h1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 18em;
+    right: 0;
+    height: 90px;
+    color: white;
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    font-size: 40px;
+    line-height: 40px;
+    letter-spacing: 5px;
+    text-shadow: -2px 0 0 #fdff2a,
+      -4px 0 0 #df4a42,
+      2px 0 0 #91fcfe,
+      4px 0 0 #4405fc;
+    animation: blink 1s steps(4, start) infinite;
+}
+@keyframes blink {
+    to {visibility: hidden};
+}
+
+/* coin */
+.coin {
+    background-color: #aaa;
+    display: inline-block;
+    height: 30px;
+    font-size: 15px;
+    font-family: 'Times New Roman', Times, serif;
+    width: 30px;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 50%;
+    box-shadow: 1px 1px 0px 1px rgba(0,0,0,0.3);
+  }
+  
+  .coin.large {
+    height: 60px;
+    width: 60px;
+    line-height: 60px;
+    font-size: 30px;
+    margin-right: 10px;
+    box-shadow: 2px 2px 0px 2px rgba(0,0,0,0.3);
+  }
+  
+  .clickable, button {
+    cursor: pointer;
+    -webkit-user-select: none; /* Chrome/Safari */
+  }
+
 /* button from codepen */
 .button--1{
     /* color type A */
@@ -40,13 +95,13 @@ body {
     --color_6 : rgba(10,150,0,0)  ;
 }
 
-
 .button{
     display : flex ;
     justify-content : center ;
     align-items : center ;
     position : relative ;
     text-decoration : none ;
+    margin: 10px;
     width : 300px ;
     height : 64px ;
     font-size : 24px ;
@@ -386,6 +441,7 @@ body {
     position : relative ;
     width : 300px ;
     border-radius : 16px ;
+    margin: 0 auto; 
 }
 .accordion input{
     display : none ;
@@ -417,6 +473,7 @@ body {
 .accordion__text{
     display : inline-block ;
     position : relative ;
+    /* background: lightpink; */
     margin : 0 ;
     max-height : 0 ;
     overflow : hidden ;
@@ -426,6 +483,8 @@ body {
     opacity : 0 ;
 }
 .accordion__patition{
+    /* height:90vh; */
+    overflow-x: scroll;
     position : relative ;
     z-index : 1 ;
     margin : 0 ;
