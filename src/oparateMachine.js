@@ -2,7 +2,49 @@
 const title = document.querySelector("#titleH1");
 const imgTag = document.createElement("img");
 // accordionText.innerHTMLにsvgを仕込む
+// DOGもあったら、innerHTMLを`${svg}<img src="~"></img>`にする？
 const accordionText = document.querySelector("accordion__text");
+// buttonにonClickつけたい
+// trivia button
+const button1 = document.querySelector(".button--1");
+// answer button
+const button2 = document.querySelector(".button--2");
+// hello? button
+const button3 = document.querySelector(".button--3");
+// dog button
+const button4 = document.querySelector(".button--4");
+const sumObj = {
+    trivia: 0,
+    answer: 0,
+    hello: 0,
+    dog: 0
+}
+
+console.log(button1)
+button1.addEventListener("click", () => {
+    console.log("HEY------");
+    getRandomTrivia();
+    sumObj["trivia"]++;
+})
+
+button2.addEventListener("click", () => {
+    getAnswer();
+    sumObj["answer"]++;
+})
+
+button3.addEventListener("click", () => {
+    getRandomHello();
+    sumObj["hello"]++;
+})
+
+button4.addEventListener("click", () => {
+    getRandomDog();
+    sumObj["dog"]++;
+})
+
+
+
+
 const langCodes = ["az", "bg", "bs", "cs", "da", "de", "dz", "en", "en-gb", "en-us", "es", "et", "fi", "fil", "fr", "hr", "hu","id", "kk", "lo", "lt", "lv", "ms", "my", "no", "ro", "sk", "sl", "sq", "sr", "sv", "sw", "tk"];
 /*
 getRandomHello();
