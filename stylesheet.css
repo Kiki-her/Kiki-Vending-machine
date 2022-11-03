@@ -1,0 +1,459 @@
+body {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #0f0a1e;
+  min-height: 100vh;
+  align-items: center;
+}
+
+.container {
+    display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  align-items: center;
+}
+
+/* arcade text from codepen */
+h1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* bottom: 18em; */
+    right: 0;
+    padding-top: 80px;
+    height: 90px;
+    color: white;
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    font-size: 40px;
+    line-height: 40px;
+    letter-spacing: 5px;
+    text-shadow: -2px 0 0 #fdff2a,
+      -4px 0 0 #df4a42,
+      2px 0 0 #91fcfe,
+      4px 0 0 #4405fc;
+    animation: blink 1s steps(4, start) infinite;
+}
+@keyframes blink {
+    to {visibility: hidden};
+}
+
+/* other buttons */
+.buttonSec {
+    display: flex;
+    width: 90vw;
+    margin: 0 auto;  
+}
+
+
+#result-button {
+    float: left;
+    margin: 10px;
+    width: 100px;
+    height: auto;
+}
+
+#reset-button {
+    float: left;
+    margin: 10px;
+    width: 100px;
+    height: 30px;
+}
+
+/* coin */
+.data {
+    width: 90vw;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.coin {
+    background-color: #aaa;
+    /* display: inline-block; */
+    height: 30px;
+    font-size: 15px;
+    font-family: 'Times New Roman', Times, serif;
+    width: 30px;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 50%;
+    box-shadow: 1px 1px 0px 1px rgba(0,0,0,0.3);
+  }
+  
+  .coin.large {
+    height: 60px;
+    width: 60px;
+    line-height: 60px;
+    font-size: 30px;
+    margin: 10px;
+    box-shadow: 2px 2px 0px 2px rgba(0,0,0,0.3);
+  }
+  
+  .clickable, button {
+    cursor: pointer;
+    -webkit-user-select: none; /* Chrome/Safari */
+  }
+
+/* button from codepen */
+
+.neon_buttons {
+    /* display: flex; */
+    /* margin-top: 100px; */
+    width: 90vw;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.button--1{
+    /* color type A */
+    --color_1 : rgba(84,248,255,.8) ;
+    --color_2 : rgba(84,248,255,.6)  ;
+    --color_3 : rgba(84,248,255,.3) ;
+    --color_4 : rgba(84,248,255,0)   ;
+    --color_5 : rgba(0,0,255,.5) ;
+    --color_6 : rgba(0,0,255,0)  ;
+}
+.button--2{
+    /* color type B */
+    --color_1 : rgba(255,100,255,.8) ;
+    --color_2 : rgba(255,100,255,.6)  ;
+    --color_3 : rgba(255,100,255,.3) ;
+    --color_4 : rgba(255,100,255,0)   ;
+    --color_5 : rgba(255,20,100,.5) ;
+    --color_6 : rgba(255,20,100,0)  ;
+}
+.button--3{
+    /* color type C */
+    --color_1 : rgba(255,255,0,.8) ;
+    --color_2 : rgba(255,255,50,.6)  ;
+    --color_3 : rgba(255,255,50,.3) ;
+    --color_4 : rgba(255,255,50,0)   ;
+    --color_5 : rgba(255,150,0,.3) ;
+    --color_6 : rgba(255,150,0,0)  ;
+}
+
+.button--4{
+    /* color type C */
+    --color_1 : rgba(30,255,50,.8) ;
+    --color_2 : rgba(30,255,50,.6)  ;
+    --color_3 : rgba(30,255,50,.3) ;
+    --color_4 : rgba(30,255,50,0)   ;
+    --color_5 : rgba(10,150,0,.3) ;
+    --color_6 : rgba(10,150,0,0)  ;
+}
+
+.button{
+    display : flex ;
+    justify-content : center ;
+    align-items : center ;
+    position : relative ;
+    text-decoration : none ;
+    margin: 10px;
+    width : 300px ;
+    height : 64px ;
+    font-size : 24px ;
+    color : #555 ;
+    letter-spacing : 8px ;
+    font-family: 'Kite One', sans-serif;
+    text-shadow : 1px 1px 2px transparent, 
+        -1px -1px 2px transparent, 
+        -1px 1px 2px transparent, 
+        1px -1px 2px transparent,
+        1px 1px 30px var(--color_4),
+        -1px -1px 30px var(--color_4),
+        -1px 1px 30px var(--color_4),
+        1px -1px 30px var(--color_4),
+        1px 1px 50px var(--color_6),
+        -1px -1px 50px var(--color_6),
+        -1px 1px 50px var(--color_6),
+        1px -1px 50px var(--color_6);
+    box-sizing : border-box ;
+    border-radius : 12px ;
+    border : solid 2px #555 ;
+    box-shadow : 0 0 4px transparent,
+        0 0 4px transparent inset,
+        0 0 20px var(--color_4),
+        0 0 20px var(--color_4) inset,
+        0 0 48px var(--color_6),
+        0 0 64px var(--color_6) inset;
+}
+.button:hover{
+    animation : lights 1.4s linear ;
+    animation-fill-mode : forwards ;
+}
+
+@keyframes lights {
+    0%{
+        box-shadow : 0 0 4px transparent,
+        0 0 4px transparent inset,
+        0 0 20px var(--color_4),
+        0 0 20px var(--color_4) inset,
+        0 0 48px var(--color_6),
+        0 0 64px var(--color_6) inset;
+        text-shadow : 1px 1px 2px transparent, 
+        -1px -1px 2px transparent, 
+        -1px 1px 2px transparent, 
+        1px -1px 2px transparent,
+        1px 1px 30px var(--color_4),
+        -1px -1px 30px var(--color_4),
+        -1px 1px 30px var(--color_4),
+        1px -1px 30px var(--color_4),
+        1px 1px 50px var(--color_6),
+        -1px -1px 50px var(--color_6),
+        -1px 1px 50px var(--color_6),
+        1px -1px 50px var(--color_6);
+        color : #555 ;
+        border-color : #555 ;
+    }
+    2%{
+        box-shadow : 0 0 4px transparent,
+        0 0 4px transparent inset,
+        0 0 20px var(--color_4),
+        0 0 20px var(--color_4) inset,
+        0 0 48px var(--color_6),
+        0 0 64px var(--color_6) inset;
+        text-shadow : 1px 1px 2px transparent, 
+        -1px -1px 2px transparent, 
+        -1px 1px 2px transparent, 
+        1px -1px 2px transparent,
+        1px 1px 30px var(--color_4),
+        -1px -1px 30px var(--color_4),
+        -1px 1px 30px var(--color_4),
+        1px -1px 30px var(--color_4),
+        1px 1px 50px var(--color_6),
+        -1px -1px 50px var(--color_6),
+        -1px 1px 50px var(--color_6),
+        1px -1px 50px var(--color_6);
+        color : #555 ;
+        border-color : #555 ;
+    }
+    3%{
+        box-shadow : 0 0 4px var(--color_1),
+        0 0 4px var(--color_1) inset,
+        0 0 20px var(--color_2),
+        0 0 20px var(--color_2) inset,
+        0 0 48px var(--color_5),
+        0 0 64px var(--color_5) inset;
+        text-shadow : 1px 1px 2px var(--color_1), 
+        -1px -1px 2px var(--color_1), 
+        -1px 1px 2px var(--color_1), 
+        1px -1px 2px var(--color_1),
+        1px 1px 30px var(--color_3),
+        -1px -1px 30px var(--color_3),
+        -1px 1px 30px var(--color_3),
+        1px -1px 30px var(--color_3),
+        1px 1px 50px var(--color_5),
+        -1px -1px 50px var(--color_5),
+        -1px 1px 50px var(--color_5),
+        1px -1px 50px var(--color_5);
+        color : #fff ;
+        border-color : #fff ;
+    }
+    5%{
+        box-shadow : 0 0 4px var(--color_1),
+        0 0 4px var(--color_1) inset,
+        0 0 20px var(--color_2),
+        0 0 20px var(--color_2) inset,
+        0 0 48px var(--color_5),
+        0 0 64px var(--color_5) inset;
+        text-shadow : 1px 1px 2px var(--color_1), 
+        -1px -1px 2px var(--color_1), 
+        -1px 1px 2px var(--color_1), 
+        1px -1px 2px var(--color_1),
+        1px 1px 30px var(--color_3),
+        -1px -1px 30px var(--color_3),
+        -1px 1px 30px var(--color_3),
+        1px -1px 30px var(--color_3),
+        1px 1px 50px var(--color_5),
+        -1px -1px 50px var(--color_5),
+        -1px 1px 50px var(--color_5),
+        1px -1px 50px var(--color_5);
+        color : #fff ;
+        border-color : #fff ;
+    }
+    6%{
+        box-shadow : 0 0 4px transparent,
+        0 0 4px transparent inset,
+        0 0 20px var(--color_4),
+        0 0 20px var(--color_4) inset,
+        0 0 48px var(--color_6),
+        0 0 64px var(--color_6) inset;
+        text-shadow : 1px 1px 2px transparent, 
+        -1px -1px 2px transparent, 
+        -1px 1px 2px transparent, 
+        1px -1px 2px transparent,
+        1px 1px 30px var(--color_4),
+        -1px -1px 30px var(--color_4),
+        -1px 1px 30px var(--color_4),
+        1px -1px 30px var(--color_4),
+        1px 1px 50px var(--color_6),
+        -1px -1px 50px var(--color_6),
+        -1px 1px 50px var(--color_6),
+        1px -1px 50px var(--color_6);
+        color : #555 ;
+        border-color : #555 ;
+    }
+    12%{
+        box-shadow : 0 0 4px transparent,
+        0 0 4px transparent inset,
+        0 0 20px var(--color_4),
+        0 0 20px var(--color_4) inset,
+        0 0 48px var(--color_6),
+        0 0 64px var(--color_6) inset;
+        text-shadow : 1px 1px 2px transparent, 
+        -1px -1px 2px transparent, 
+        -1px 1px 2px transparent, 
+        1px -1px 2px transparent,
+        1px 1px 30px var(--color_4),
+        -1px -1px 30px var(--color_4),
+        -1px 1px 30px var(--color_4),
+        1px -1px 30px var(--color_4),
+        1px 1px 50px var(--color_6),
+        -1px -1px 50px var(--color_6),
+        -1px 1px 50px var(--color_6),
+        1px -1px 50px var(--color_6);
+        color : #555 ;
+        border-color : #555 ;
+    }
+    13%{
+        box-shadow : 0 0 4px var(--color_1),
+        0 0 4px var(--color_1) inset,
+        0 0 20px var(--color_2),
+        0 0 20px var(--color_2) inset,
+        0 0 48px var(--color_5),
+        0 0 64px var(--color_5) inset;
+        text-shadow : 1px 1px 2px var(--color_1), 
+        -1px -1px 2px var(--color_1), 
+        -1px 1px 2px var(--color_1), 
+        1px -1px 2px var(--color_1),
+        1px 1px 30px var(--color_3),
+        -1px -1px 30px var(--color_3),
+        -1px 1px 30px var(--color_3),
+        1px -1px 30px var(--color_3),
+        1px 1px 50px var(--color_5),
+        -1px -1px 50px var(--color_5),
+        -1px 1px 50px var(--color_5),
+        1px -1px 50px var(--color_5);
+        color : #fff ;
+        border-color : #fff ;
+    }
+    14%{
+        box-shadow : 0 0 4px var(--color_1),
+        0 0 4px var(--color_1) inset,
+        0 0 20px var(--color_2),
+        0 0 20px var(--color_2) inset,
+        0 0 48px var(--color_5),
+        0 0 64px var(--color_5) inset;
+        text-shadow : 1px 1px 2px var(--color_1), 
+        -1px -1px 2px var(--color_1), 
+        -1px 1px 2px var(--color_1), 
+        1px -1px 2px var(--color_1),
+        1px 1px 30px var(--color_3),
+        -1px -1px 30px var(--color_3),
+        -1px 1px 30px var(--color_3),
+        1px -1px 30px var(--color_3),
+        1px 1px 50px var(--color_5),
+        -1px -1px 50px var(--color_5),
+        -1px 1px 50px var(--color_5),
+        1px -1px 50px var(--color_5);
+        color : #fff ;
+        border-color : #fff ;
+    }
+    17%{
+        box-shadow : 0 0 4px transparent,
+        0 0 4px transparent inset,
+        0 0 20px var(--color_4),
+        0 0 20px var(--color_4) inset,
+        0 0 48px var(--color_6),
+        0 0 64px var(--color_6) inset;
+        text-shadow : 1px 1px 2px transparent, 
+        -1px -1px 2px transparent, 
+        -1px 1px 2px transparent, 
+        1px -1px 2px transparent,
+        1px 1px 30px var(--color_4),
+        -1px -1px 30px var(--color_4),
+        -1px 1px 30px var(--color_4),
+        1px -1px 30px var(--color_4),
+        1px 1px 50px var(--color_6),
+        -1px -1px 50px var(--color_6),
+        -1px 1px 50px var(--color_6),
+        1px -1px 50px var(--color_6);
+        color : #555 ;
+        border-color : #555 ;
+    }
+    40%{
+        box-shadow : 0 0 4px transparent,
+        0 0 4px transparent inset,
+        0 0 20px var(--color_4),
+        0 0 20px var(--color_4) inset,
+        0 0 48px var(--color_6),
+        0 0 64px var(--color_6) inset;
+        text-shadow : 1px 1px 2px transparent, 
+        -1px -1px 2px transparent, 
+        -1px 1px 2px transparent, 
+        1px -1px 2px transparent,
+        1px 1px 30px var(--color_4),
+        -1px -1px 30px var(--color_4),
+        -1px 1px 30px var(--color_4),
+        1px -1px 30px var(--color_4),
+        1px 1px 50px var(--color_6),
+        -1px -1px 50px var(--color_6),
+        -1px 1px 50px var(--color_6),
+        1px -1px 50px var(--color_6);
+        color : #555 ;
+        border-color : #555 ;
+    }
+    41%{
+        box-shadow : 0 0 4px var(--color_1),
+        0 0 4px var(--color_1) inset,
+        0 0 20px var(--color_2),
+        0 0 20px var(--color_2) inset,
+        0 0 48px var(--color_5),
+        0 0 64px var(--color_5) inset;
+        text-shadow : 1px 1px 2px var(--color_1), 
+        -1px -1px 2px var(--color_1), 
+        -1px 1px 2px var(--color_1), 
+        1px -1px 2px var(--color_1),
+        1px 1px 30px var(--color_3),
+        -1px -1px 30px var(--color_3),
+        -1px 1px 30px var(--color_3),
+        1px -1px 30px var(--color_3),
+        1px 1px 50px var(--color_5),
+        -1px -1px 50px var(--color_5),
+        -1px 1px 50px var(--color_5),
+        1px -1px 50px var(--color_5);
+        color : #fff ;
+        border-color : #fff ;
+    }
+    100%{
+        box-shadow : 0 0 4px var(--color_1),
+        0 0 4px var(--color_1) inset,
+        0 0 20px var(--color_2),
+        0 0 20px var(--color_2) inset,
+        0 0 48px var(--color_5),
+        0 0 64px var(--color_5) inset;
+        text-shadow : 1px 1px 2px var(--color_1), 
+        -1px -1px 2px var(--color_1), 
+        -1px 1px 2px var(--color_1), 
+        1px -1px 2px var(--color_1),
+        1px 1px 30px var(--color_3),
+        -1px -1px 30px var(--color_3),
+        -1px 1px 30px var(--color_3),
+        1px -1px 30px var(--color_3),
+        1px 1px 50px var(--color_5),
+        -1px -1px 50px var(--color_5),
+        -1px 1px 50px var(--color_5),
+        1px -1px 50px var(--color_5);
+        color : #fff ;
+        border-color : #fff ;
+    }
+}
+
+
+/* 領収書 */
+.receipt {
+    background-color: lightpink;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+}
