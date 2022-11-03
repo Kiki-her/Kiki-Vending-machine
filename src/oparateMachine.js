@@ -2,8 +2,7 @@
 const title = document.querySelector("#titleH1");
 const imgTag = document.createElement("img");
 // accordionText.innerHTMLにsvgを仕込む
-// DOGもあったら、innerHTMLを`${svg}<img src="~"></img>`にする？
-const accordionText = document.querySelector(".accordion__text");
+const accordionText = document.querySelector(".content");
 // buttonにonClickつけたい
 // trivia button
 const button1 = document.querySelector(".button--1");
@@ -39,7 +38,7 @@ coin500.addEventListener("click", () => {
 
 const resultButton = document.querySelector("#result-button");
 
-const sumObj = {
+let sumObj = {
   trivia: {
     count: 0,
     resultVal: []
@@ -62,21 +61,29 @@ console.log(button1);
 button1.addEventListener("click", () => {
   getRandomTrivia();
   sumObj["trivia"].count++;
+  coinAmount -= 150;
+  titleH1.innerText = coinAmount;
 });
 
 button2.addEventListener("click", () => {
   getAnswer();
   sumObj["answer"].count++;
+  coinAmount -= 210;
+  titleH1.innerText = coinAmount;
 });
 
 button3.addEventListener("click", () => {
   getRandomHello();
   sumObj["hello"].count++;
+  coinAmount -= 50;
+  titleH1.innerText = coinAmount;
 });
 
 button4.addEventListener("click", () => {
   getRandomDog();
   sumObj["dog"].count++;
+  coinAmount -= 500;
+  titleH1.innerText = coinAmount;
 });
 
 function setReceiptDetail() {
@@ -142,6 +149,34 @@ resultButton.addEventListener("click", () => {
 const resetButton = document.querySelector("#reset-button");
 resetButton.addEventListener("click", () => {
     titleH1.innerText = "Insert Coin";
+    coinAmount = 0;
+    sumObj = {
+      trivia: {
+        count: 0,
+        resultVal: []
+    },
+      answer: {
+        count: 0,
+        resultVal: []
+    },
+      hello: {
+        count: 0,
+        resultVal: []
+    },
+      dog: {
+        count: 0,
+        resultVal: []
+    },
+    };
+    const isHere = document.querySelector(".originReceipt");
+    const isDogs = document.querySelectorAll(".dogImg")
+    if(isHere) {
+      isHere.remove();
+    }
+    if(isDogs) {
+      isDogs.forEach((elem) => elem.remove());
+    }
+
 })
 
 
@@ -196,11 +231,11 @@ function createReceipt(obj, money) {
     {border:space; width: 30}
     -
     {border:space; width:3,14,3,6}
-    ${obj.sumText}
+    ${obj.detialText}
     {border:space; width: 30}
     -
     {border:space; width: 26}
-    ${obj.valText}
+    ${obj.valueText}
     {border:space; width: 30}
     -
     {width:5,5,16; text:wrap}
@@ -215,47 +250,27 @@ function createReceipt(obj, money) {
     
     010001000100100101000111`;
 
-    const text1 = `Kiki Vending Machine
-    ナマケモノ都
-    登録番号　K1234555
-    
-    ^領 収 書
-    -
-    ${obj.sumText}
-    -
-    ${obj.valText}
-    -
-    小計 | ${obj.sum}点 | ¥${obj.totalAmount}
-    -
-    合計 | ^¥${obj.totalAmount}
-    お預かり | ^¥${money}
-    お釣り | ^¥${money - obj.totalAmount}
-    *印はナマケモノ免税対象商品です
-    
-    010001000100100101000111`;
+    const svg = receiptline.transform(text, {
+      cpl: 24,
+      encoding: "cp932",
+      spacing: "true",
+    });
 
-    // const svg = receiptline.transform(text, {
-    //   cpl: 24,
-    //   encoding: "cp932",
-    //   spacing: "false",
-    // });
-
-    const tagP = document.createElement("p");
-    tagP.style = 'margin-right: 1px; background: pink; height:90vh; overflow-x: scroll;';
-    tagP.innerHTML = text1;
+    const style = 'background: pink;';
+    accordionText.innerHTML = `<div class="originReceipt" style=${style}>${svg}</div>`;
     const imgAmount = sumObj["dog"].resultVal.length;
     console.log(imgAmount, "DOGLE");
     for(let i = 0; i < imgAmount; i++) {
         const img = document.createElement("img");
-        img.className = `dogImg${i}`;
+        img.className = `dogImg`;
         img.src = sumObj["dog"].resultVal[i];
         img.style = "width: 200px; height: auto;";
-        tagP.appendChild(img);
+        accordionText.appendChild(img);
         console.log("DOG")
     }
-    accordionText.appendChild(tagP);
+    console.log(obj, "RESULTOBJ");
     const returnMoney = money - obj.totalAmount;
-    titleH1.innerText = "Thank you! " + returnMoney;
+    titleH1.innerText = "Thank you! Back: " + returnMoney;
 }
 
 
@@ -272,7 +287,6 @@ async function getRandomHello() {
     `https://stefanbohacek.com/hellosalut/?lang=${getTargetLang()}`
   ).then((res) => res.json());
     sumObj["hello"]["resultVal"].push(getHello.hello)
-//   console.log("^^^", getHello.hello);
 }
 
 // yesかnoかを取得(10000回に1回maybe)
@@ -280,8 +294,9 @@ async function getAnswer() {
   const yesOrNo = await fetch(`https://yesno.wtf/api`).then((res) =>
     res.json()
   );
-  sumObj["answer"]["resultVal"].push("---", + yesOrNo.answer)
-//   console.log("---", yesOrNo.answer);
+  console.log(yesOrNo)
+  sumObj["answer"]["resultVal"].push(yesOrNo.answer)
+
 }
 
 // triviaをランダムで取得
@@ -290,12 +305,7 @@ async function getRandomTrivia() {
     (res) => res.json()
   );
   sumObj["trivia"]["resultVal"].push("Q: " + trivia.results[0].question + "\n----A: " + trivia.results[0].correct_answer)
-//   console.log(
-//     "Q: ",
-//     trivia.results[0].question,
-//     "--A: ",
-//     trivia.results[0].correct_answer
-//   );
+
 }
 
 // 犬の画像をランダムで取得
@@ -304,8 +314,5 @@ async function getRandomDog() {
     (res) => res.json()
   );
   sumObj["dog"]["resultVal"].push(dogImg.message);
-//   console.log("ImgSrc: ", dogImg.message);
-//   imgTag.src = dogImg.message;
-//   imgTag.className = "dogImg";
-//   title.appendChild(imgTag);
+
 }
