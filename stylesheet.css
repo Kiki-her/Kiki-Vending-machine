@@ -10,6 +10,7 @@ body {
   justify-content: center;
   min-height: 100vh;
   align-items: center;
+  margin: 0 50vw;
 }
 
 /* arcade text from codepen */
@@ -456,4 +457,5 @@ h1 {
     width: 300px;
     display: flex;
     justify-content: center;
+    margin: 0 50vw;
 }
